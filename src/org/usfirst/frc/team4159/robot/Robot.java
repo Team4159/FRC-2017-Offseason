@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 
 import org.usfirst.frc.team4159.robot.subsystems.Climber;
 import org.usfirst.frc.team4159.robot.subsystems.Drivetrain;
+import org.usfirst.frc.team4159.robot.subsystems.GearIO;
+import org.usfirst.frc.team4159.robot.subsystems.GearLifter;
 import org.usfirst.frc.team4159.robot.commands.TeleopDrive;
 
 public class Robot extends IterativeRobot {
@@ -16,6 +18,8 @@ public class Robot extends IterativeRobot {
 	
 	public static Drivetrain drivetrain;
 	public static Climber climber;
+	public static GearIO gearIO;
+	public static GearLifter gearLifter;
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
@@ -25,11 +29,17 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		drivetrain = new Drivetrain();
 		climber = new Climber();
+		gearIO = new GearIO();
+		gearLifter = new GearLifter();
 	}
 
 	// Called everytime robot enters Disabled mode. Use to clear and rest subsystem info.
 	@Override
 	public void disabledInit() {
+		Drivetrain.stop();
+		Climber.stopClimb();
+		GearIO.stop();
+		GearLifter.stopLift();
 	}
 
 	@Override
@@ -69,15 +79,14 @@ public class Robot extends IterativeRobot {
 	// Called periodically during operator control
 	@Override
 	public void teleopPeriodic() {
-		
 		new TeleopDrive();
-		
 		Scheduler.getInstance().run();
 	}
 
 	// Called periodically during test mode
 	@Override
 	public void testPeriodic() {
+		new TeleopDrive();
 		LiveWindow.run();
 	}
 }

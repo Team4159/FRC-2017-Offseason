@@ -1,15 +1,14 @@
 package org.usfirst.frc.team4159.robot.commands;
 
+import org.usfirst.frc.team4159.robot.Robot;
+import org.usfirst.frc.team4159.robot.subsystems.GearLifter;
+
 import edu.wpi.first.wpilibj.command.Command;
 
-/**
- *
- */
 public class LiftGear extends Command {
 
     public LiftGear() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+    		requires(Robot.gearLifter);
     }
 
     // Called just before this Command runs the first time
@@ -18,6 +17,7 @@ public class LiftGear extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    		GearLifter.liftUp();
     }
 
     // Make this return true when this Command no longer needs to run execute()

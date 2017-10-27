@@ -5,9 +5,6 @@ import org.usfirst.frc.team4159.robot.RobotMap;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-/**
- *
- */
 public class Drivetrain extends Subsystem {
 	
 	private static Victor leftVictor;
@@ -23,9 +20,12 @@ public class Drivetrain extends Subsystem {
 		rightVictor.set(rightValue);
 	}
 	
+	public static void stop() {
+		leftVictor.set(0);
+		rightVictor.set(0);
+	}
+	
     public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
 }
-

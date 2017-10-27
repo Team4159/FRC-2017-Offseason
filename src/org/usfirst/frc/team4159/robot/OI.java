@@ -1,6 +1,9 @@
 package org.usfirst.frc.team4159.robot;
 
 import org.usfirst.frc.team4159.robot.commands.Climb;
+import org.usfirst.frc.team4159.robot.commands.EjectGear;
+import org.usfirst.frc.team4159.robot.commands.IntakeGear;
+import org.usfirst.frc.team4159.robot.commands.LiftGear;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -28,10 +31,10 @@ public class OI {
 		climbUpButton = new JoystickButton(secondaryStick, 3); // change!
 		climbDownButton = new JoystickButton(secondaryStick, 4); // change!
 		
-		gearIntakeButton.whileHeld(new GearIntake());
-		gearIntakeButton.whenReleased(new GearUp());
+		gearIntakeButton.whileHeld(new IntakeGear());
+		gearIntakeButton.whenReleased(new LiftGear());
 		
-		gearOuttakeButton.whileHeld(new GearOuttake());
+		gearOuttakeButton.whileHeld(new EjectGear());
 		
 		climbUpButton.whileHeld(new Climb("up"));
 		climbDownButton.whileHeld(new Climb("down"));

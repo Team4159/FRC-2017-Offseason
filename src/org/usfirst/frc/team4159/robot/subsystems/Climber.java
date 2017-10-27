@@ -5,9 +5,6 @@ import org.usfirst.frc.team4159.robot.RobotMap;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-/**
- *
- */
 public class Climber extends Subsystem {
 	
 	private static Victor climbVictor;
@@ -23,10 +20,12 @@ public class Climber extends Subsystem {
 	public static void climbDown() {
 		climbVictor.set(-1);
 	}
+	
+	public static void stopClimb() {
+		climbVictor.set(0);
+	}
 
     public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
 }
-
