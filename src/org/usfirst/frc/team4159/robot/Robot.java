@@ -36,10 +36,10 @@ public class Robot extends IterativeRobot {
 	// Called everytime robot enters Disabled mode. Use to clear and rest subsystem info.
 	@Override
 	public void disabledInit() {
-		Drivetrain.stop();
-		Climber.stopClimb();
-		GearIO.stop();
-		GearLifter.stopLift();
+		drivetrain.stop();
+		climber.stopClimb();
+		gearIO.stop();
+		gearLifter.stopLift();
 	}
 
 	@Override

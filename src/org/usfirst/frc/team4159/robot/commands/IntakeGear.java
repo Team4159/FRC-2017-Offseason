@@ -1,8 +1,6 @@
 package org.usfirst.frc.team4159.robot.commands;
 
 import org.usfirst.frc.team4159.robot.Robot;
-import org.usfirst.frc.team4159.robot.subsystems.GearIO;
-
 import edu.wpi.first.wpilibj.command.Command;
 
 public class IntakeGear extends Command {
@@ -17,7 +15,7 @@ public class IntakeGear extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    		GearIO.intake();
+    		Robot.gearIO.intake();
     }
 
     // Make this return true when this Command no longer needs to run execute()

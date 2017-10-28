@@ -13,15 +13,15 @@ public class GearIO extends Subsystem {
 		gearVictor = new Victor(RobotMap.gearIOMotor);
 	}
 
-    public static void intake() {
+    public void intake() {
     		gearVictor.set(1);
     }
     
-    public static void outtake() {
+    public void outtake() {
     		gearVictor.set(-1);
     }
     
-    public static void stop() {
+    public void stop() {
     		gearVictor.set(0);
     }
 

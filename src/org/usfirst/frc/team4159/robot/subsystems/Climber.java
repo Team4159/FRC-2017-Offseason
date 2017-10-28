@@ -13,15 +13,15 @@ public class Climber extends Subsystem {
 		climbVictor = new Victor(RobotMap.climberMotor);
 	}
 
-	public static void climbUp() {
+	public void climbUp() {
 		climbVictor.set(1);
 	}
 	
-	public static void climbDown() {
+	public void climbDown() {
 		climbVictor.set(-1);
 	}
 	
-	public static void stopClimb() {
+	public void stopClimb() {
 		climbVictor.set(0);
 	}
 

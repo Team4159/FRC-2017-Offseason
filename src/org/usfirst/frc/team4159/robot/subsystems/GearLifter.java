@@ -13,15 +13,15 @@ public class GearLifter extends Subsystem {
 		liftVictor = new Victor(RobotMap.gearLiftMotor);
 	}
 	
-	public static void liftUp() {
+	public void liftUp() {
 		liftVictor.set(1);
 	}
 	
-	public static void liftDown() {
+	public void liftDown() {
 		liftVictor.set(-1);
 	}
 	
-	public static void stopLift() {
+	public void stopLift() {
 		liftVictor.set(0);
 	}
 

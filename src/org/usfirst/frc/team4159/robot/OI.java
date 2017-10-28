@@ -6,39 +6,32 @@ import org.usfirst.frc.team4159.robot.commands.IntakeGear;
 import org.usfirst.frc.team4159.robot.commands.LiftGear;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 public class OI {
 	
 	private static Joystick leftStick;
 	private static Joystick rightStick;
-	private Joystick secondaryStick;
-	
-	private Button gearIntakeButton;
-	private Button gearOuttakeButton;
-	private Button climbUpButton;
-	private Button climbDownButton;
+	private static Joystick secondaryStick;
 
 	public OI() {
 		
-		leftStick = new Joystick(0);
-		rightStick = new Joystick(1);
-		secondaryStick = new Joystick(2);
-		
-		gearIntakeButton = new JoystickButton(secondaryStick, 1); // change!
-		gearOuttakeButton = new JoystickButton(secondaryStick, 2); // change!
-		climbUpButton = new JoystickButton(secondaryStick, 3); // change!
-		climbDownButton = new JoystickButton(secondaryStick, 4); // change!
-		
-		gearIntakeButton.whileHeld(new IntakeGear());
-		gearIntakeButton.whenReleased(new LiftGear());
-		
-		gearOuttakeButton.whileHeld(new EjectGear());
-		
-		climbUpButton.whileHeld(new Climb("up"));
-		climbDownButton.whileHeld(new Climb("down"));
+		leftStick = new Joystick(RobotMap.leftJoy);
+		rightStick = new Joystick(RobotMap.rightJoy);
+		secondaryStick = new Joystick(RobotMap.secondaryJoy);
 				
+		getButton(secondaryStick, RobotMap.gearIntakeButton).whileHeld(new IntakeGear());
+		getButton(secondaryStick, RobotMap.gearIntakeButton).whenReleased(new LiftGear());
+		
+		getButton(secondaryStick, RobotMap.gearOuttakeButton).whileHeld(new EjectGear());
+		
+		getButton(secondaryStick, RobotMap.climbUpButton).whileHeld(new Climb("up"));
+		getButton(secondaryStick, RobotMap.climbDownButton).whileHeld(new Climb("down"));
+				
+	}
+	
+	private JoystickButton getButton(Joystick s, int b) {
+		return new JoystickButton(s, b);
 	}
 	
 	public static double getLeftJoystick() {
@@ -48,5 +41,5 @@ public class OI {
 	public static double getRightJoystick() {
 		return rightStick.getY();
 	}
-		
+	
 }

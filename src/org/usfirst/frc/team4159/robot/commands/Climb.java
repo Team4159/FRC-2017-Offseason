@@ -1,13 +1,8 @@
 package org.usfirst.frc.team4159.robot.commands;
 
 import org.usfirst.frc.team4159.robot.Robot;
-import org.usfirst.frc.team4159.robot.subsystems.Climber;
-
 import edu.wpi.first.wpilibj.command.Command;
 
-/**
- *
- */
 public class Climb extends Command {
 	
 	private String s;
@@ -26,9 +21,9 @@ public class Climb extends Command {
     protected void execute() {
     		switch (s) {
     		case "up":
-    			Climber.climbUp();
+    			Robot.climber.climbUp();
     		case "down":
-    			Climber.climbDown();
+    			Robot.climber.climbDown();
     		}
     }
 

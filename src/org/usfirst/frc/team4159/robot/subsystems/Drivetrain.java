@@ -15,12 +15,12 @@ public class Drivetrain extends Subsystem {
 		rightVictor = new Victor(RobotMap.rightDriveMotor);
 	}
 	
-	public static void set(double leftValue, double rightValue) {
+	public void set(double leftValue, double rightValue) {
 		leftVictor.set(leftValue);
 		rightVictor.set(rightValue);
 	}
 	
-	public static void stop() {
+	public void stop() {
 		leftVictor.set(0);
 		rightVictor.set(0);
 	}
