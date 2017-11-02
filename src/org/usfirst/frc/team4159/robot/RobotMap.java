@@ -2,43 +2,25 @@ package org.usfirst.frc.team4159.robot;
 
 public class RobotMap {
 	
-	public static int leftJoy;
-	public static int rightJoy;
-	public static int secondaryJoy;
+	// CHANGE ALL OF THIS ONCE ELECTRONICS BOARD IS FINALIZED!!!!!
 	
-	public static int leftDriveMotor;
-	public static int rightDriveMotor;
-	public static int gearIOMotor;
-	public static int gearLiftMotor;
-	public static int climberMotor;
+	// Joysticks
+	public static final int leftJoy = 0;
+	public static final int rightJoy = 1;
+	public static final int secondaryJoy = 2;
 	
-	public static int gearIntakeButton;
-	public static int gearOuttakeButton;
-	public static int climbUpButton;
-	public static int climbDownButton;
+	// PWM Ports
+	public static final int leftDriveMotor = 1;
+	public static final int rightDriveMotor = 2;
+	public static final int gearIOMotor = 3;
+	public static final int gearLiftMotor = 4;
+	public static final int climberMotor = 5;
 	
-	public RobotMap() {
-		
-		// CHANGE ALL OF THIS ONCE ELECTRONICS BOARD IS FINALIZED!!!!!
-		// Joysticks
-		leftJoy = 0;
-		rightJoy = 1;
-		secondaryJoy = 2;
-		
-		// Buttons
-		gearIntakeButton = 1;
-		gearOuttakeButton = 2;
-		climbUpButton = 3;
-		climbDownButton = 4;
-		
-		// PWM Ports
-		leftDriveMotor = 0;
-		rightDriveMotor = 1;
-		gearIOMotor = 2;
-		gearLiftMotor = 3;
-		climberMotor = 4;
-		
-	}
+	// Buttons
+	public static final int gearIntakeButton = 1;
+	public static final int gearOuttakeButton = 2;
+	public static final int climbUpButton = 3;
+	public static final int climbDownButton = 4;
 	
 }
 
