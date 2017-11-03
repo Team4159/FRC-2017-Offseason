@@ -1,6 +1,7 @@
 package org.usfirst.frc.team4159.robot.subsystems;
 
 import org.usfirst.frc.team4159.robot.RobotMap;
+import org.usfirst.frc.team4159.robot.commands.IOGear;
 
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -26,6 +27,6 @@ public class GearIO extends Subsystem {
     }
 
     public void initDefaultCommand() {
-        //setDefaultCommand(new MySpecialCommand());
+       setDefaultCommand(new IOGear());
     }
 }

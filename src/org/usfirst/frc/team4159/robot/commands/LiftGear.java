@@ -1,6 +1,9 @@
 package org.usfirst.frc.team4159.robot.commands;
 
+import org.usfirst.frc.team4159.robot.OI;
 import org.usfirst.frc.team4159.robot.Robot;
+import org.usfirst.frc.team4159.robot.RobotMap;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 public class LiftGear extends Command {
@@ -15,7 +18,14 @@ public class LiftGear extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    		Robot.gearLifter.liftUp();
+    	
+    		if( OI.getSecondaryButton(RobotMap.gearUpButton)) {
+        		Robot.gearLifter.liftUp();
+    		}
+    		
+    		if( OI.getSecondaryButton(RobotMap.gearDownButton)) {
+        		Robot.gearLifter.liftDown();
+    		}
     }
 
     // Make this return true when this Command no longer needs to run execute()

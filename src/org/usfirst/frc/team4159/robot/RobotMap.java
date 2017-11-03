@@ -21,6 +21,8 @@ public class RobotMap {
 	public static final int gearOuttakeButton = 2;
 	public static final int climbUpButton = 3;
 	public static final int climbDownButton = 4;
+	public static final int gearUpButton = 5;
+	public static final int gearDownButton = 6;
 	
 }
 

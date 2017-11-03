@@ -18,7 +18,6 @@ import org.opencv.core.Mat;
 import org.opencv.core.Point;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
-import org.usfirst.frc.team4159.robot.commands.TeleopDrive;
 
 public class Robot extends IterativeRobot {
 
@@ -105,14 +104,12 @@ public class Robot extends IterativeRobot {
 	// Called periodically during operator control
 	@Override
 	public void teleopPeriodic() {
-		new TeleopDrive();
 		Scheduler.getInstance().run();
 	}
 
 	// Called periodically during test mode
 	@Override
 	public void testPeriodic() {
-		new TeleopDrive();
 		LiveWindow.run();
 	}
 }

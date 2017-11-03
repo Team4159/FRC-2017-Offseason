@@ -1,16 +1,16 @@
 package org.usfirst.frc.team4159.robot.commands;
 
+import org.usfirst.frc.team4159.robot.OI;
 import org.usfirst.frc.team4159.robot.Robot;
+import org.usfirst.frc.team4159.robot.RobotMap;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 public class Climb extends Command {
 	
-	private String s;
-
-    public Climb(String s) {
+    public Climb() {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.climber);
-        this.s = s;
     }
 
     // Called just before this Command runs the first time
@@ -19,11 +19,12 @@ public class Climb extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    		switch (s) {
-    		case "up":
-    			Robot.climber.climbUp();
-    		case "down":
-    			Robot.climber.climbDown();
+    	
+    		if( OI.getSecondaryButton(RobotMap.climbUpButton) ) {
+        		Robot.climber.climbUp();
+    		} else if( OI.getSecondaryButton(RobotMap.climbUpButton) ) {
+        		Robot.climber.climbDown();
+
     		}
     }
 

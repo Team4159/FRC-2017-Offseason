@@ -1,13 +1,15 @@
 package org.usfirst.frc.team4159.robot.commands;
 
+import org.usfirst.frc.team4159.robot.OI;
 import org.usfirst.frc.team4159.robot.Robot;
+import org.usfirst.frc.team4159.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class EjectGear extends Command {
+public class IOGear extends Command {
 
-    public EjectGear() {
-    		requires(Robot.gearIO);
+    public IOGear() {
+        requires(Robot.gearIO);
     }
 
     // Called just before this Command runs the first time
@@ -16,7 +18,17 @@ public class EjectGear extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    		Robot.gearIO.outtake();
+    	
+    	if( OI.getSecondaryButton(RobotMap.gearIntakeButton) ) {
+    		
+        	Robot.gearIO.intake();
+        	
+    	} else if ( OI.getSecondaryButton(RobotMap.gearOuttakeButton) ) {
+    		
+        	Robot.gearIO.outtake();
+        	
+    	}
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
