@@ -20,12 +20,12 @@ public class Climb extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	
-    		if( OI.getSecondaryButton(RobotMap.climbUpButton) ) {
-        		Robot.climber.climbUp();
-    		} else if( OI.getSecondaryButton(RobotMap.climbUpButton) ) {
+    		if( OI.getSecondaryButton(RobotMap.climbUpButton) )
+    			Robot.climber.climbUp();
+    		
+        	else if( OI.getSecondaryButton(RobotMap.climbDownButton) )
         		Robot.climber.climbDown();
 
-    		}
     }
 
     // Make this return true when this Command no longer needs to run execute()

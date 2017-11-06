@@ -4,9 +4,9 @@ import org.usfirst.frc.team4159.robot.OI;
 import org.usfirst.frc.team4159.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
-public class TeleopDrive extends Command {
+public class TankDrive extends Command {
 
-    public TeleopDrive() {
+    public TankDrive() {
         // Use requires() here to declare subsystem dependencies
     		requires(Robot.drivetrain);
     }
@@ -17,7 +17,7 @@ public class TeleopDrive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    		Robot.drivetrain.set( OI.getLeftJoystick(), OI.getRightJoystick() );
+    		Robot.drivetrain.setFromJoysticks( OI.getLeftJoystick(), OI.getRightJoystick() );
     }
 
     // Make this return true when this Command no longer needs to run execute()

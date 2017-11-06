@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Climber extends Subsystem {
 	
-	private static Victor climbVictor;
+	private Victor climbVictor;
 	
 	public Climber() {
 		climbVictor = new Victor(RobotMap.climberMotor);

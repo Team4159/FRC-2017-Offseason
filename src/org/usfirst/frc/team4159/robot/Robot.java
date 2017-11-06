@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import org.usfirst.frc.team4159.robot.subsystems.Climber;
 import org.usfirst.frc.team4159.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team4159.robot.subsystems.GearIO;
-import org.usfirst.frc.team4159.robot.subsystems.GearLifter;
+import org.usfirst.frc.team4159.robot.subsystems.GearLift;
 import org.opencv.core.Mat;
 import org.opencv.core.Point;
 import org.opencv.core.Scalar;
@@ -26,18 +26,22 @@ public class Robot extends IterativeRobot {
 	public static Drivetrain drivetrain;
 	public static Climber climber;
 	public static GearIO gearIO;
-	public static GearLifter gearLifter;
+	public static GearLift gearLift;
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 
 	@Override
 	public void robotInit() {
+		
+		// Initialize subsystems
 		oi = new OI();
 		drivetrain = new Drivetrain();
 		climber = new Climber();
 		gearIO = new GearIO();
-		gearLifter = new GearLifter();
+		gearLift = new GearLift();
+		
+		// Start camera server on a new thread
 		new Thread(() -> {
             UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
             camera.setResolution(640, 480);
@@ -56,15 +60,16 @@ public class Robot extends IterativeRobot {
                 outputStream.putFrame(output);
             }
         }).start();
+		
 	}
 
-	// Called everytime robot enters Disabled mode. Use to clear and rest subsystem info.
+	// Called every time robot enters Disabled mode. Use to clear and rest subsystem info.
 	@Override
 	public void disabledInit() {
 		drivetrain.stop();
 		climber.stopClimb();
 		gearIO.stop();
-		gearLifter.stopLift();
+		gearLift.stop();
 	}
 
 	@Override
@@ -99,6 +104,7 @@ public class Robot extends IterativeRobot {
 		// Makes sure auton stops when teleop starts
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
+		
 	}
 
 	// Called periodically during operator control

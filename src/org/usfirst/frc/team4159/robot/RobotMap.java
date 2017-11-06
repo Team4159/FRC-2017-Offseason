@@ -1,22 +1,37 @@
 package org.usfirst.frc.team4159.robot;
 
 public class RobotMap {
-	
-	// CHANGE ALL OF THIS ONCE ELECTRONICS BOARD IS FINALIZED!!!!!
-	
+		
 	// Joysticks
 	public static final int leftJoy = 0;
 	public static final int rightJoy = 1;
 	public static final int secondaryJoy = 2;
 	
-	// PWM Ports
-	public static final int leftDriveMotor = 1;
-	public static final int rightDriveMotor = 2;
-	public static final int gearIOMotor = 3;
-	public static final int gearLiftMotor = 4;
-	public static final int climberMotor = 5;
+	// Drivetrain PWM Ports
+	public static final int leftDriveMotor = 0;
+	public static final int rightDriveMotor = 1;
+	public static final int gearIOMotor = 2;
+	public static final int gearLiftMotor = 3;
+	public static final int climberMotor = 4;
 	
-	// Buttons
+	// Analog input ports
+	public static final int gearPot = 0;
+	
+	// Drivetrain Encoder Ports
+	public static final int leftDriveEncoderA = 0;
+	public static final int leftDriveEncoderB = 1;
+	public static final int rightDriveEncoderA = 2;
+	public static final int rightDriveEncoderB = 3;
+	
+	// Constants
+	public static final double pulsePerRotation = 360;
+	public static final double wheelDiameter = 2; // inches
+	public static final double wheelCircumference = wheelDiameter * Math.PI;
+	public static final double distancePerPulse = wheelCircumference / pulsePerRotation;
+	public static final double leftMultiplier = 1; // btw 0 to 1
+	public static final double rightMultiplier = 1; // btw 0 to 1
+	
+	// Joystick button mappings
 	public static final int gearIntakeButton = 1;
 	public static final int gearOuttakeButton = 2;
 	public static final int climbUpButton = 3;
@@ -25,8 +40,3 @@ public class RobotMap {
 	public static final int gearDownButton = 6;
 	
 }
-
-// If you are using multiple modules, make sure to define both the port
-// number and the module. For example you with a rangefinder:
-// public static int rangefinderPort = 1;
-// public static int rangefinderModule = 1;

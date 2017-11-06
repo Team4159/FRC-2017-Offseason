@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class GearIO extends Subsystem {
 	
-	private static Victor gearVictor;
+	private Victor gearVictor;
 	
 	public GearIO() {
 		gearVictor = new Victor(RobotMap.gearIOMotor);
