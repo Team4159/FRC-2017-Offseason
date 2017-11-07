@@ -46,7 +46,7 @@ public class GearLift extends PIDSubsystem {
     }
     
     public void initDefaultCommand() {
-        //setDefaultCommand(new MySpecialCommand());
+       //setDefaultCommand(new LiftGear(0));
     }
 
 }

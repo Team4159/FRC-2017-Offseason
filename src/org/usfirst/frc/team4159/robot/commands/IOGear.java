@@ -7,6 +7,8 @@ import org.usfirst.frc.team4159.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class IOGear extends Command {
+	
+	/* Intake / Outtake gear */
 
     public IOGear() {
         requires(Robot.gearIO);
@@ -19,16 +21,12 @@ public class IOGear extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	
-    	if( OI.getSecondaryButton(RobotMap.gearIntakeButton) ) {
-    		
-        	Robot.gearIO.intake();
-        	
-    	} else if ( OI.getSecondaryButton(RobotMap.gearOuttakeButton) ) {
-    		
-        	Robot.gearIO.outtake();
-        	
-    	}
-    	
+	    	if( OI.getSecondaryButton(RobotMap.gearIntakeButton) )
+	        	Robot.gearIO.intake();
+	        	
+	    	else if ( OI.getSecondaryButton(RobotMap.gearOuttakeButton) )
+	        	Robot.gearIO.outtake();
+	        	
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -43,5 +41,6 @@ public class IOGear extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    		Robot.gearIO.stop();
     }
 }

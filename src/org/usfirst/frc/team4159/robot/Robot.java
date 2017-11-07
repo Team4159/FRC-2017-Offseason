@@ -35,31 +35,38 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		
 		// Initialize subsystems
-		oi = new OI();
 		drivetrain = new Drivetrain();
 		climber = new Climber();
 		gearIO = new GearIO();
 		gearLift = new GearLift();
 		
-		// Start camera server on a new thread
-		new Thread(() -> {
-            UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
-            camera.setResolution(640, 480);
-            
-            CvSink cvSink = CameraServer.getInstance().getVideo();
-            CvSource outputStream = CameraServer.getInstance().putVideo("gearcam", 640, 480); // check camera dimensions?
-            
-            Mat source = new Mat();
-            Mat output = new Mat();
-            
-            while(!Thread.interrupted()) {
-                cvSink.grabFrame(source);
-                // Draw hud
-                //Imgproc.cvtColor(source, output, Imgproc.COLOR_BGR2GRAY);
-                Imgproc.rectangle(output, new Point(5,5), new Point(100,5), new Scalar(255,0,0)); // change x,y points and color
-                outputStream.putFrame(output);
-            }
-        }).start();
+		oi = new OI();
+		
+		CameraServer.getInstance().startAutomaticCapture();
+		
+		/*
+			
+			new Thread(() -> {
+				
+	            UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+	            camera.setResolution(640, 480);
+	            
+	            CvSink cvSink = CameraServer.getInstance().getVideo();
+	            CvSource outputStream = CameraServer.getInstance().putVideo("gearcam", 640, 480); // check camera dimensions?
+	            
+	            Mat source = new Mat();
+	            Mat output = new Mat();
+	            
+	            while(!Thread.interrupted()) {
+	                cvSink.grabFrame(source);
+	                // Draw hud
+	                //Imgproc.cvtColor(source, output, Imgproc.COLOR_BGR2GRAY);
+	                Imgproc.rectangle(output, new Point(5,5), new Point(100,5), new Scalar(255,0,0)); // change x,y points and color
+	                outputStream.putFrame(output);
+	            }
+	        }).start();
+			
+		*/
 		
 	}
 

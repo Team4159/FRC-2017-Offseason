@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class GearIO extends Subsystem {
 	
+	/* Gear Intake / Outtake */
+	
 	private Victor gearVictor;
 	
 	public GearIO() {
