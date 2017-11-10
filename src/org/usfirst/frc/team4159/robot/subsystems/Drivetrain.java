@@ -14,26 +14,37 @@ public class Drivetrain extends Subsystem {
 	private RobotDrive dt;
 	private VictorSP leftVictor, rightVictor;
 	private ADXRS450_Gyro gyro;
-	private double kP = 0.1; // tune!
+
+	//PID control variables
+	private static final double kP = 0.1, kI = 0.1, TARGET_RPM = 0; //TODO tune!
+	private double sumError;
 	
 	public Drivetrain() {
-		
 		leftVictor = new VictorSP(RobotMap.leftDriveMotor);
 		rightVictor = new VictorSP(RobotMap.rightDriveMotor);
 		dt = new RobotDrive(leftVictor, rightVictor);
 		gyro = new ADXRS450_Gyro();
-		
+
 		gyro.reset();
 		
 		LiveWindow.addActuator("Drivetrain", "left motor", leftVictor);
 		LiveWindow.addActuator("Drivetrain", "Right motor", rightVictor);
 		LiveWindow.addSensor("Drivetrain", "Gyro", gyro);
-
 	}
-	
+
+	/**
+	 * PI control:
+	 * Get the current angle, calculator and integrate error, and set the desired rotation
+	 */
 	public void driveStraight() {
-		double angle = gyro.getAngle();
-		dt.arcadeDrive(-1, angle * kP); // maybe negative angle
+		double error = TARGET_RPM - gyro.getRate();
+		sumError += error;
+		double rotation = kP * (error + (kI * sumError));
+
+		if(rotation > 1 || rotation < -1) //un-integrate to avoid integrator windup. Values already limited
+			sumError -= error;
+
+		dt.arcadeDrive(-1, rotation);
 	}
 
 	public void setFromJoysticks(double leftValue, double rightValue) {
