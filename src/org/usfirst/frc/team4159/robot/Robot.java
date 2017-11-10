@@ -9,7 +9,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc.team4159.robot.commands.AutoCommand;
 import org.usfirst.frc.team4159.robot.subsystems.Climber;
 import org.usfirst.frc.team4159.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team4159.robot.subsystems.GearIO;
@@ -29,18 +31,25 @@ public class Robot extends IterativeRobot {
 	public static GearLift gearLift;
 
 	Command autonomousCommand;
-	SendableChooser<Command> chooser = new SendableChooser<>();
+	SendableChooser<Command> chooser;
 
 	@Override
 	public void robotInit() {
 		
 		// Initialize subsystems
+		gearLift = new GearLift();
 		drivetrain = new Drivetrain();
 		climber = new Climber();
 		gearIO = new GearIO();
-		gearLift = new GearLift();
 		
 		oi = new OI();
+		
+		chooser = new SendableChooser<Command>();
+		chooser.addDefault("Do Nothing", new AutoCommand(AutoCommand.Mode.DO_NOTHING));
+		chooser.addDefault("Drive Straight", new AutoCommand(AutoCommand.Mode.STRAIGHT));
+		chooser.addDefault("Middle Gear", new AutoCommand(AutoCommand.Mode.MIDDLE_GEAR));
+
+		SmartDashboard.putData("Auto Mode", chooser);
 		
 		CameraServer.getInstance().startAutomaticCapture();
 		

@@ -12,16 +12,11 @@ public class RobotMap {
 	public static final int rightDriveMotor = 1;
 	public static final int gearIOMotor = 2;
 	public static final int gearLiftMotor = 3;
-	public static final int climberRelay = 4;
+	public static final int climberMotor = 4;
 	
-	// Analog Input Ports
-	public static final int gearPot = 0;
-	
-	// Drivetrain Encoder Ports
-	public static final int leftDriveEncoderA = 0;
-	public static final int leftDriveEncoderB = 1;
-	public static final int rightDriveEncoderA = 2;
-	public static final int rightDriveEncoderB = 3;
+	// Digital Input Ports
+	public static final int liftEncoderA = 0;
+	public static final int liftEncoderB = 1;
 	
 	// Encoders
 	public static final double pulsePerRotation = 360;

@@ -27,6 +27,8 @@ public class IOGear extends Command {
 	    	else if ( OI.getSecondaryButton(RobotMap.gearOuttakeButton) )
 	        	Robot.gearIO.outtake();
 	        	
+	    	else
+	    		Robot.gearIO.stop();
     }
 
     // Make this return true when this Command no longer needs to run execute()

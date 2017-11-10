@@ -3,17 +3,17 @@ package org.usfirst.frc.team4159.robot.subsystems;
 import org.usfirst.frc.team4159.robot.RobotMap;
 import org.usfirst.frc.team4159.robot.commands.IOGear;
 
-import edu.wpi.first.wpilibj.Victor;
+import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class GearIO extends Subsystem {
 	
 	/* Gear Intake / Outtake */
 	
-	private Victor gearVictor;
+	private VictorSP gearVictor;
 	
 	public GearIO() {
-		gearVictor = new Victor(RobotMap.gearIOMotor);
+		gearVictor = new VictorSP(RobotMap.gearIOMotor);
 	}
 
     public void intake() {

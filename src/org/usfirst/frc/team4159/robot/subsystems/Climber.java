@@ -3,27 +3,27 @@ package org.usfirst.frc.team4159.robot.subsystems;
 import org.usfirst.frc.team4159.robot.RobotMap;
 import org.usfirst.frc.team4159.robot.commands.Climb;
 
-import edu.wpi.first.wpilibj.Relay;
+import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Climber extends Subsystem {
 	
-	private Relay relay;
+	private VictorSP climbVictor;
 	
 	public Climber() {
-		relay = new Relay(RobotMap.climberRelay);
+		climbVictor = new VictorSP(RobotMap.climberMotor);
 	}
 
 	public void climbUp() {
-		relay.set(Relay.Value.kForward);
+		climbVictor.set(1);
 	}
 	
 	public void climbDown() {
-		relay.set(Relay.Value.kReverse);
+		climbVictor.set(-1);
 	}
 	
 	public void stopClimb() {
-		relay.set(Relay.Value.kOff);
+		climbVictor.set(0);
 	}
 
     public void initDefaultCommand() {
