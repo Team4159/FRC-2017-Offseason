@@ -17,11 +17,11 @@ public class GearIO extends Subsystem {
 	}
 
     public void intake() {
-    		gearVictor.set(1);
+    		gearVictor.set(0.8);
     }
     
     public void outtake() {
-    		gearVictor.set(-1);
+    		gearVictor.set(-0.4);
     }
     
     public void stop() {

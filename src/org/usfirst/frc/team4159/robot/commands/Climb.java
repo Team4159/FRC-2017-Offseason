@@ -22,12 +22,8 @@ public class Climb extends Command {
     	
     		if( OI.getSecondaryButton(RobotMap.climbUpButton) )
     			Robot.climber.climbUp();
-    		
-        	else if( OI.getSecondaryButton(RobotMap.climbDownButton) )
-        		Robot.climber.climbDown();
-    		
-        	else
-        		Robot.climber.stopClimb();
+    		else
+    			Robot.climber.stopClimb();
 
     }
 

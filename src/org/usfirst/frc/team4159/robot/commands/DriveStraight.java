@@ -4,11 +4,16 @@ import org.usfirst.frc.team4159.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.TimedCommand;
 
-public class StraightDrive extends TimedCommand {
+public class DriveStraight extends TimedCommand {
+	
+	private double left;
+	private double right;
 
-    public StraightDrive(double timeout) {
+    public DriveStraight(double timeout, double left, double right) {
         super(timeout);
         requires(Robot.drivetrain);
+        this.left = left;
+        this.right = right;
     }
 
     // Called just before this Command runs the first time
@@ -17,7 +22,8 @@ public class StraightDrive extends TimedCommand {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    		Robot.drivetrain.driveStraight();
+    		System.out.println("Drive straight execute");
+    		Robot.drivetrain.driveStraightRaw(left, right);
     }
 
     // Called once after timeout
@@ -28,6 +34,7 @@ public class StraightDrive extends TimedCommand {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-		end();
+    		end();
     }
+    
 }

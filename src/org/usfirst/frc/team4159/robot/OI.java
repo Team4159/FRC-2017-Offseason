@@ -36,4 +36,8 @@ public class OI {
 		return rightStick.getY();
 	}
 	
+	public static double getSecondaryJoystick() {
+		return secondaryStick.getY();
+	}
+	
 }

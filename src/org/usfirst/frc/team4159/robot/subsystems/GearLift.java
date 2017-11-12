@@ -57,7 +57,6 @@ public class GearLift extends PIDSubsystem {
     }
 
     protected void usePIDOutput(double output) {
-    		System.out.println(output);
         liftVictor.set(output);
     }
 }
