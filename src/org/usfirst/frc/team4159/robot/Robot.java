@@ -1,41 +1,35 @@
 package org.usfirst.frc.team4159.robot;
 
-import edu.wpi.cscore.CvSink;
-import edu.wpi.cscore.CvSource;
-import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team4159.robot.commands.TimedCommandGroup;
-import org.usfirst.frc.team4159.robot.commands.AutoCommandGroup;
 import org.usfirst.frc.team4159.robot.subsystems.Climber;
 import org.usfirst.frc.team4159.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team4159.robot.subsystems.GearIO;
 import org.usfirst.frc.team4159.robot.subsystems.GearLift;
-import org.opencv.core.Mat;
-import org.opencv.core.Point;
-import org.opencv.core.Scalar;
-import org.opencv.imgproc.Imgproc;
+
 
 public class Robot extends IterativeRobot {
-
-	public static OI oi;
 	
 	public static Drivetrain drivetrain;
 	public static Climber climber;
 	public static GearIO gearIO;
 	public static GearLift gearLift;
 	public static PowerDistributionPanel pdp;
+	
+	public static OI oi;
+	public static NetworkTables nt;
 
-	Command autonomousCommand;
-	SendableChooser<Command> chooser;
+	private Command autonomousCommand;
+	private SendableChooser<Command> chooser;
 
 	@Override
 	public void robotInit() {
@@ -61,11 +55,9 @@ public class Robot extends IterativeRobot {
 //		chooser.addObject("Right Gear", new AutoCommandGroup(AutoCommandGroup.Mode.RIGHT_GEAR));
 
 		SmartDashboard.putData("Auto Mode", chooser);
-		System.out.println("Auto smtartdashboard initialized");
 		
 		CameraServer.getInstance().startAutomaticCapture();
 		
-			
 //			new Thread(() -> {
 //				
 //	            UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
@@ -105,12 +97,8 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void autonomousInit() {
-		
-		System.out.println("auto initialized");
 		autonomousCommand = (Command) chooser.getSelected();
-		System.out.println("auton command choosen");
-
-		// schedule the autonomous command (example)
+		
 		if (autonomousCommand != null) {
 			autonomousCommand.start();
 			System.out.println("auto command started");
@@ -120,7 +108,7 @@ public class Robot extends IterativeRobot {
 	// Called periodically during autonomous
 	@Override
 	public void autonomousPeriodic() {
-		printPDPValues();
+		updateNetworkTables();
 		Scheduler.getInstance().run();
 	}
 
@@ -135,27 +123,21 @@ public class Robot extends IterativeRobot {
 	// Called periodically during operator control
 	@Override
 	public void teleopPeriodic() {
-		printPDPValues();
+		updateNetworkTables();
 		Scheduler.getInstance().run();
 	}
 
 	// Called periodically during test mode
 	@Override
 	public void testPeriodic() {
+		updateNetworkTables();
 		LiveWindow.run();
 	}
 	
-	public void printPDPValues() {
-		
-		SmartDashboard.putNumber("Total Voltage", pdp.getVoltage());
-		SmartDashboard.putNumber("Total Current", pdp.getTotalCurrent());
-		SmartDashboard.putNumber("Port 0", pdp.getCurrent(0));
-		SmartDashboard.putNumber("Port 1", pdp.getCurrent(1));
-		SmartDashboard.putNumber("Port 2", pdp.getCurrent(2));
-		SmartDashboard.putNumber("Port 3", pdp.getCurrent(3));
-		SmartDashboard.putNumber("Port 4", pdp.getCurrent(4));
-		SmartDashboard.putNumber("Port 5", pdp.getCurrent(5));
-		SmartDashboard.putNumber("Port 7", pdp.getCurrent(7));
-
+	public void updateNetworkTables() {
+		nt.update("Total Voltage", pdp.getVoltage());
+		nt.update("Total Voltage", pdp.getTotalCurrent());
+		nt.update("Port 0", pdp.getCurrent(0)); // Expand to all pdp ports in use
+		nt.update("Match Time", Timer.getMatchTime());
 	}
 }

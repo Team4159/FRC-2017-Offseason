@@ -17,7 +17,7 @@ public class GearIO extends Subsystem {
 	}
 
     public void intake() {
-    		gearVictor.set(0.8);
+    		gearVictor.set(1);
     }
     
     public void outtake() {

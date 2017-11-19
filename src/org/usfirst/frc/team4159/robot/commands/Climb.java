@@ -9,7 +9,6 @@ import edu.wpi.first.wpilibj.command.Command;
 public class Climb extends Command {
 	
     public Climb() {
-        // Use requires() here to declare subsystem dependencies
         requires(Robot.climber);
     }
 
@@ -20,7 +19,7 @@ public class Climb extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	
-    		if( OI.getSecondaryButton(RobotMap.climbUpButton) )
+    		if( OI.getSecondaryButton(RobotMap.climbUpButton) || OI.getNesButton(RobotMap.nesClimb) )
     			Robot.climber.climbUp();
     		else
     			Robot.climber.stopClimb();

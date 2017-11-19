@@ -1,7 +1,8 @@
 package org.usfirst.frc.team4159.robot.subsystems;
 
+import org.usfirst.frc.team4159.robot.OI;
 import org.usfirst.frc.team4159.robot.RobotMap;
-import org.usfirst.frc.team4159.robot.commands.TankDrive;
+import org.usfirst.frc.team4159.robot.commands.ArcadeDrive;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.RobotDrive;
@@ -15,7 +16,6 @@ public class Drivetrain extends Subsystem {
 	private VictorSP leftVictor, rightVictor;
 	private ADXRS450_Gyro gyro;
 
-	//PID control variables
 	private static final double kP = 0.1, kI = 0, bkP = 0.01; //TODO tune!
 	private double sumError;
 	
@@ -32,18 +32,16 @@ public class Drivetrain extends Subsystem {
 		LiveWindow.addActuator("Drivetrain", "Right motor", rightVictor);
 		LiveWindow.addSensor("Drivetrain", "Gyro", gyro);
 	}
-
-	/**
-	 * PI control:
-	 * Get the current angle, calculator and integrate error, and set the desired rotation
-	 */
 	
 	public void drivePIDa(double targetAngle) {
 		double angle = gyro.getAngle();
 		dt.drive(-0.5, -angle*bkP + targetAngle);
 	}
 	
-	
+	/**
+	 * PI control:
+	 * Get the current angle, calculator and integrate error, and set the desired rotation
+	 */
 	public void drivePIDb(double targetRPM) {
 		double error = targetRPM - gyro.getRate();
 		sumError += error;
@@ -56,27 +54,33 @@ public class Drivetrain extends Subsystem {
 	}
 	
 	public void driveStraightRaw(double right, double left) {
-		System.out.println("drive straight raw");
 		dt.tankDrive(-right, -left);
+	}
+	
+	public void arcadeDrive() {
+		dt.arcadeDrive(OI.getLeftJoystick(), 1, OI.getRightJoystick(), 0, true);
+	}
+	
+	
+	public void turnLeftRaw() {
+		dt.tankDrive(1,-1);
+	}
+	
+	public void turnRightRaw() {
+		dt.tankDrive(-1,1);
 	}
 
 	public void setFromJoysticks(double leftValue, double rightValue) {
-		
 		dt.tankDrive(leftValue * RobotMap.leftMultiplier, rightValue * RobotMap.rightMultiplier);
-		
 	}
 	
 	public void setRaw(double leftValue, double rightValue) {
-		
 		dt.tankDrive(leftValue, rightValue);
-
 	}
 		
 	
 	public void stop() {
-		
 		dt.tankDrive(0, 0);
-		
 	}
 	
 	public void resetGyro() {
@@ -84,7 +88,7 @@ public class Drivetrain extends Subsystem {
 	}
 	
     public void initDefaultCommand() {
-        setDefaultCommand(new TankDrive());
+        setDefaultCommand(new ArcadeDrive());
     }
     
 }

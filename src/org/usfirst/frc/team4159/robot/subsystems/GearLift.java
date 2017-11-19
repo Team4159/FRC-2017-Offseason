@@ -18,6 +18,7 @@ public class GearLift extends PIDSubsystem {
 	private static double kD = 0; // most likely not
 
     public GearLift() {
+    	
     		super("Gear Lift", kP, kI, kD);
     		
     		liftVictor = new VictorSP(RobotMap.gearLiftMotor);

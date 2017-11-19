@@ -21,7 +21,7 @@ public class IOGear extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	
-	    	if( OI.getSecondaryButton(RobotMap.gearIntakeButton) )
+	    	if( OI.getSecondaryButton(RobotMap.gearIntakeButton) || OI.getNesButton(RobotMap.nesGearIntake) )
 	        	Robot.gearIO.intake();
 	        	
 	    	else if ( OI.getSecondaryButton(RobotMap.gearOuttakeButton) )

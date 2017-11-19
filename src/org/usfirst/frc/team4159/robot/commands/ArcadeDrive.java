@@ -1,14 +1,12 @@
 package org.usfirst.frc.team4159.robot.commands;
 
-import org.usfirst.frc.team4159.robot.OI;
 import org.usfirst.frc.team4159.robot.Robot;
-import org.usfirst.frc.team4159.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class TankDrive extends Command {
+public class ArcadeDrive extends Command {
 
-    public TankDrive() {
+    public ArcadeDrive() {
     		requires(Robot.drivetrain);
     }
 
@@ -18,14 +16,7 @@ public class TankDrive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    		Robot.drivetrain.setFromJoysticks( OI.getLeftAxis(), OI.getRightAxis() );
-    		Robot.drivetrain.setFromJoysticks( OI.getNesAxis(RobotMap.nesAcceleration), OI.getNesAxis(RobotMap.nesAcceleration) );
-    		
-	    	if( OI.getRightButton(4) || OI.getNesButton(RobotMap.nesTurnLeft) )
-	        	Robot.drivetrain.turnLeftRaw();
-	        	
-	    	else if ( OI.getRightButton(5) || OI.getNesButton(RobotMap.nesTurnRight) )
-	        	Robot.drivetrain.turnRightRaw();
+    		Robot.drivetrain.arcadeDrive();
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -40,6 +31,5 @@ public class TankDrive extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    		end();
     }
 }

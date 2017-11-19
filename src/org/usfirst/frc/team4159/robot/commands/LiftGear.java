@@ -2,6 +2,7 @@ package org.usfirst.frc.team4159.robot.commands;
 
 import org.usfirst.frc.team4159.robot.OI;
 import org.usfirst.frc.team4159.robot.Robot;
+import org.usfirst.frc.team4159.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -20,6 +21,11 @@ public class LiftGear extends Command {
     protected void execute() {
     	
     		Robot.gearLift.setRaw(OI.getSecondaryJoystick() * 0.4);
+    		
+    		if( OI.getNesButton(RobotMap.nesGearUp) )
+    			Robot.gearLift.setRaw(0.3);
+    		else if ( OI.getNesButton(RobotMap.nesGearDown) )
+    			Robot.gearLift.setRaw(-0.3);
 		
     }
 
