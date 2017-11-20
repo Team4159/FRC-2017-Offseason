@@ -1,3 +1,11 @@
-bin/
+# Gradle
 build/
-dist/
+.gradle/
+
+# IntelliJ
+.idea/
+FRC-2017-Offseason.iml
+FRC-2017-Offseason_main.iml
+FRC-2017-Offseason_test.iml
+FRC-2017-Offseason.ipr
+FRC-2017-Offseason.iws
