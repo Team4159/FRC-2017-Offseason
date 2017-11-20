@@ -23,7 +23,7 @@ deploy {
     }
 }
 repositories {
-    // mavenLocal()
+//  mavenLocal()
     mavenCentral()
 }
 

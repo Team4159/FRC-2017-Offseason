@@ -25,7 +25,7 @@ public class Robot extends IterativeRobot {
     public static GearLift gearLift;
     public static PowerDistributionPanel pdp;
     public static OI oi;
-    private static org.usfirst.frc.team4159.robot.RobotServer rs;
+    public static RobotServer rs;
 
     private Command autonomousCommand;
     private SendableChooser<Command> chooser;
@@ -104,7 +104,6 @@ public class Robot extends IterativeRobot {
 
         if (autonomousCommand != null) {
             autonomousCommand.start();
-            System.out.println("auto command started");
         }
     }
 
